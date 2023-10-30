@@ -1,10 +1,14 @@
-import LoginPage from "./views/LoginPage"
+import HomePage from "./views/HomePage"
+// import RegisterPage from "./views/RegisterPage"
+// import LoginPage from "./views/LoginPage"
 
 function App() {
 
   return (
     <>
-    <LoginPage />
+    {/* <LoginPage /> */}
+    {/* <RegisterPage /> */}
+    <HomePage />
     </>
   )
 }
