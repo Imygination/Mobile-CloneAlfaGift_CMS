@@ -1,4 +1,11 @@
+import { Link, useNavigate } from "react-router-dom";
+
 function MainNavigation() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   return (
     <>
       <header>
@@ -9,30 +16,31 @@ function MainNavigation() {
         >
           <div className="position-sticky">
             <div className="list-group list-group-flush mx-3 mt-4">
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="list-group-item list-group-item-action py-2 ripple"
                 aria-current="true"
               >
                 <i className="fas fa-tachometer-alt fa-fw me-3"></i>
                 <span>Main dashboard</span>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/register"
                 className="list-group-item list-group-item-action py-2 ripple"
               >
                 <i className="fas fa-lock fa-fw me-3"></i>
-                <span>Add Admin</span>
-              </a>
-              <a
-                href="#"
+                <span>Register Admin</span>
+              </Link>
+              <Link
+                to="/category"
                 className="list-group-item list-group-item-action py-2 ripple"
               >
                 <i className="fas fa-chart-bar fa-fw me-3"></i>
                 <span>Categories</span>
-              </a>
+              </Link>
               <a
-                href="#"
+                onClick={handleLogout}
+                href=""
                 className="list-group-item list-group-item-action py-2 ripple"
               >
                 <i className="fas fa-globe fa-fw me-3"></i>
@@ -99,4 +107,4 @@ function MainNavigation() {
   );
 }
 
-export default MainNavigation
+export default MainNavigation;
