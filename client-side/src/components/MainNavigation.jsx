@@ -1,61 +1,106 @@
 function MainNavigation() {
   return (
     <>
-      <header>
-        {/* <!-- Navbar --> */}
-        <nav
-          id="main-navbar"
-          className="navbar navbar-expand-lg navbar-light bg-white fixed-top"
-        >
-          {/* <!-- Container wrapper --> */}
-          <div className="container-fluid">
-            {/* <!-- Toggle button --> */}
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#sidebarMenu"
-              aria-controls="sidebarMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+      {/* <!-- Navbar --> */}
+      <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-white">
+        {/* <!-- Container wrapper --> */}
+        <div className="container">
+          {/* <!-- Toggle button --> */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent1"
+            aria-controls="navbarSupportedContent1"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i className="fas fa-bars"></i>
+          </button>
+
+          {/* <!-- Collapsible wrapper --> */}
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent1"
+          >
+            {/* <!-- Navbar brand --> */}
+            <a
+              className="navbar-brand mt-2 mt-sm-0"
+              href="https://mdbootstrap.com/"
             >
-              <i className="fas fa-bars"></i>
-            </button>
-
-            {/* <!-- Brand --> */}
-            <a className="navbar-brand nav-link">
-              <strong>Gamma-Mart</strong>
-            </a>
-            {/* <!-- Search form --> */}
-            <form className="d-none d-md-flex input-group w-auto my-auto">
-              <input
-                autoComplete="off"
-                type="search"
-                className="form-control rounded"
-                placeholder="Find Product"
-                style={{ minWidth: " 225px" }}
+              <img
+                src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                height="20"
+                alt="MDB Logo"
+                loading="lazy"
               />
-              <span className="input-group-text border-0">
-                <i className="fas fa-search"></i>
-              </span>
-            </form>
-
-            {/* <!-- Right links --> */}
-            <ul className="navbar-nav ms-auto d-flex flex-row">
-              {/* <!-- Icon --> */}
+            </a>
+            {/* <!-- Left links --> */}
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item active">
+                <a className="nav-link " href="https://mdbootstrap.com/">
+                  Home
+                </a>
+              </li>
               <li className="nav-item">
-                <a className="navbar-brand nav-link">
-                  <h5>Welcome ...</h5>
+                <a
+                  className="nav-link"
+                  href="https://mdbootstrap.com/docs/standard/"
+                >
+                  About MDB
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  href="https://mdbootstrap.com/docs/standard/getting-started/installation/"
+                >
+                  Free download
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  href="https://mdbootstrap.com/education/bootstrap/"
+                >
+                  Free tutorials
                 </a>
               </li>
             </ul>
+            {/* <!-- Left links -->       */}
           </div>
-          {/* <!-- Container wrapper --> */}
-        </nav>
-        {/* <!-- Navbar --> */}
-      </header>
+          {/* <!-- Collapsible wrapper --> */}
+
+          {/* <!-- Right elements --> */}
+          <div className="d-flex align-items-center">
+            {/* <!-- Icon --> */}
+            <a className="nav-link me-3" href="#">
+              <i className="fas fa-shopping-cart"></i>
+              <span className="badge rounded-pill badge-notification bg-danger">
+                1
+              </span>
+            </a>
+
+            <a className="nav-link me-3" href="#">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a className="nav-link me-3" href="#">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://github.com/mdbootstrap/bootstrap-material-design"
+              className="border rounded px-2 nav-link"
+            >
+              <i className="fab fa-github me-2"></i>MDB GitHub
+            </a>
+          </div>
+          {/* <!-- Right elements --> */}
+        </div>
+        {/* <!-- Container wrapper --> */}
+      </nav>
+      {/* <!-- Navbar --> */}
     </>
   );
 }
 
-export default MainNavigation
+export default MainNavigation;
