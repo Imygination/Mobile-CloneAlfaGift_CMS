@@ -1,9 +1,11 @@
 import AddItem from "../components/AddItem";
 import MainNavigation from "../components/MainNavigation";
 import TableItem from "../components/TableItem";
+import useFetch from "../hooks/useFetch";
 import "./HomePage.css";
 
 function HomePage() {
+  const { data: items, isLoading: loadingItems } = useFetch("item");
   return (
     <>
       <MainNavigation />
@@ -25,11 +27,17 @@ function HomePage() {
               <th>Price</th>
               <th>Author</th>
               <th>Ingredients</th>
-              <th>Actions</th>
+              <th className="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <TableItem />
+            {loadingItems ? (
+              <tr><td>LOADING...</td></tr>
+            ) : (
+              items.map((item) => {
+                return <TableItem item={item} key={item.id} />;
+              })
+            )}
           </tbody>
         </table>
       </main>

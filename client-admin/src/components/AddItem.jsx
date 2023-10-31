@@ -12,7 +12,7 @@ function AddItem() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Modal title
+                Add Item
               </h5>
               <button
                 type="button"
@@ -33,7 +33,7 @@ function AddItem() {
                         className="form-control"
                       />
                       <label className="form-label" htmlFor="form6Example1">
-                        First name
+                        Name
                       </label>
                     </div>
                   </div>
@@ -45,7 +45,7 @@ function AddItem() {
                         className="form-control"
                       />
                       <label className="form-label" htmlFor="form6Example2">
-                        Last name
+                        Category
                       </label>
                     </div>
                   </div>
@@ -59,19 +59,19 @@ function AddItem() {
                     className="form-control"
                   />
                   <label className="form-label" htmlFor="form6Example3">
-                    Company name
+                    Author
                   </label>
                 </div>
 
                 {/* <!-- Text input --> */}
                 <div className="form-outline mb-4">
                   <input
-                    type="text"
+                    type="number"
                     id="form6Example4"
                     className="form-control"
                   />
                   <label className="form-label" htmlFor="form6Example4">
-                    Address
+                    Price
                   </label>
                 </div>
 
@@ -107,7 +107,7 @@ function AddItem() {
                     rows="4"
                   ></textarea>
                   <label className="form-label" htmlFor="form6Example7">
-                    Additional information
+                    Description
                   </label>
                 </div>
                 <div className="modal-footer">

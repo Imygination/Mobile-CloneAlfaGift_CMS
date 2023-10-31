@@ -83,7 +83,7 @@ function RegisterPage() {
 
           {/* <!-- Submit button --> */}
           <button type="submit" className="btn btn-primary btn-block mb-4">
-            Place order
+            Submit
           </button>
         </form>
       </main>

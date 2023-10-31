@@ -1,8 +1,10 @@
-import AddItem from "../components/AddItem";
+import AddCategory from "../components/AddCategory";
 import MainNavigation from "../components/MainNavigation";
-import TableItem from "../components/TableItem";
+import TableCategory from "../components/TableCategory";
+import useFetch from "../hooks/useFetch";
 
 function CategoryPage() {
+  const { data: categories, isLoading: loadingCategories } = useFetch("category");
   return (
     <>
       <MainNavigation />
@@ -14,21 +16,27 @@ function CategoryPage() {
           data-mdb-toggle="modal"
           data-mdb-target="#exampleModal"
         >
-          + Add Item
+          + Add Category
         </button>
-        <AddItem />
+        <AddCategory />
         <table className="table align-middle mb-0 bg-white">
           <thead className="bg-light">
             <tr>
-              <th>Item</th>
-              <th>Price</th>
-              <th>Author</th>
-              <th>Ingredients</th>
+              <th>No</th>
+              <th>Name</th>
+              <th>Created</th>
+              <th>Updated</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <TableItem />
+          {loadingCategories ? (
+              <tr><td>LOADING...</td></tr>
+            ) : (
+              categories.map((category, index) => {
+                return <TableCategory category={category} index={index} key={category.id} />;
+              })
+            )}
           </tbody>
         </table>
       </main>

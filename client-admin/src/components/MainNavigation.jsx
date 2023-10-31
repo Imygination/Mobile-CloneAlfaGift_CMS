@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 function MainNavigation() {
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault()
     localStorage.clear();
     navigate("/login");
   };
