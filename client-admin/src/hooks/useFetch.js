@@ -7,7 +7,7 @@ export default function useFetch(path) {
   const [isLoading, setLoading] = useState(true);
   const [error] = useState(null);
   const dispatch = useDispatch();
-  const data = useSelector((state) => {return state});
+  const data = useSelector((state) => {return state.itemReducer.items});
   console.log(data, '<<<<<<<<<<<<<< ini data');
 
   // async function getData() {
