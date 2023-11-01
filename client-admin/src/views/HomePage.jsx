@@ -5,7 +5,9 @@ import useFetch from "../hooks/useFetch";
 import "./HomePage.css";
 
 function HomePage() {
-  const { data: items, isLoading: loadingItems } = useFetch("item");
+  let { data: dataItems, isLoading: loadingItems } = useFetch("item");
+  let items = dataItems.itemReducer.items
+  console.log(items, "<<<<<<<<<<<<<< items di Home");
   return (
     <>
       <MainNavigation />
