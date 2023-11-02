@@ -5,7 +5,7 @@ async function errHandler(error, req, res, next) {
       res.status(401).json({ message: "Unauthen" });
       break;
 
-    case "Article Not Found":
+    case "Item Not Found":
       res.status(404).json({ message: error.name });
       break;
 
@@ -18,7 +18,7 @@ async function errHandler(error, req, res, next) {
       res.status(400).json({ message: error.errors.map((err) => err.message) });
       break;
 
-    case "Article Already Add":
+    case "Item Already Add":
     case "Email and Password cannot empty":
       res.status(400).json({ message: error.name });
       break;

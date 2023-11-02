@@ -10,6 +10,7 @@ module.exports = {
       users.map((user) => {
         user.createdAt = user.updatedAt = new Date();
         user.password = hashPassword(user.password);
+        delete user.id
         return user;
       })
     );

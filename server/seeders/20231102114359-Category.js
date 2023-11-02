@@ -8,6 +8,7 @@ module.exports = {
       "Categories",
       categories.map((category) => {
         category.createdAt = category.updatedAt = new Date();
+        delete category.id
         return category;
       })
     );
