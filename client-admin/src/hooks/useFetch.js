@@ -7,22 +7,18 @@ export default function useFetch(path) {
   const [isLoading, setLoading] = useState(true);
   const [error] = useState(null);
   const dispatch = useDispatch();
-  const data = useSelector((state) => {return state.itemReducer.items});
-  console.log(data, '<<<<<<<<<<<<<< ini data');
-
-  // async function getData() {
-  //   try {
-  //     setLoading(true);
-  //     const result = await fetchData(path);
-  //     console.log(result, "<<<<<<<<< ini result");
-  //     setData(result);
-  //   } catch (error) {
-  //     console.log(error, "<<<<<<<<<< ini error");
-  //     setError(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
+  let data = [];
+  data = useSelector((state) => {
+    switch (path) {
+      case "item":
+        return state.itemReducer.items;
+      case "category":
+        return state.categoryReducer.categories;
+      default:
+        return state.itemReducer.items;
+    }
+  });
+  console.log(data, "<<<<<<<<<<<<<< ini data");
 
   useEffect(() => {
     setLoading(true);
