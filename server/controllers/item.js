@@ -32,22 +32,37 @@ class ConItem {
   static async createItem(req, res, next) {
     const trasnCreateItem = await sequelize.transaction();
     try {
-      const { name, description, price, imgUrl, authorId, categoryId, ingredientName } =
-        req.body;
-      const item = await Item.create({
+      const {
         name,
         description,
         price,
         imgUrl,
         authorId,
         categoryId,
-      }, {transaction: trasnCreateItem});
-      const ingredient = await Ingredient.create({
-        name: ingredientName
-      });
+        ingredientName,
+      } = req.body;
+      const item = await Item.create(
+        {
+          name,
+          description,
+          price,
+          imgUrl,
+          authorId,
+          categoryId,
+        },
+        { transaction: trasnCreateItem }
+      );
+      const ingredient = await Ingredient.create(
+        {
+          name: ingredientName,
+        },
+        { transaction: trasnCreateItem }
+      );
       console.log(ingredient);
+      await trasnCreateItem.commit();
       res.status(201).json(item);
     } catch (error) {
+      await trasnCreateItem.rollback();
       next(error);
     }
   }
