@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../store/actions/actionCreator";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loginInput, setLoginInput] = useState({
     email: "",
     password: "",
@@ -14,6 +19,17 @@ function LoginPage() {
       ...loginInput,
       [field]: value,
     });
+  };
+
+  const submitHandler = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await dispatch(loginUser(loginInput));
+      console.log(response, "<<<<<<<<<<<< dari server");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -31,13 +47,7 @@ function LoginPage() {
                     <h2 className="fw-bold mb-2 text-uppercase text-center">
                       Login
                     </h2>
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        console.log(e);
-                        console.log(loginInput.email, loginInput.password);
-                      }}
-                    >
+                    <form onSubmit={submitHandler}>
                       {/* <!-- Email input --> */}
                       <label className="form-label" htmlFor="form2Example1">
                         Email address
@@ -47,6 +57,7 @@ function LoginPage() {
                           type="email"
                           id="form2Example1"
                           className="form-control border border-dark rounded"
+                          autoComplete="email"
                           name="email"
                           value={loginInput.email}
                           onChange={inputHandler}
@@ -62,6 +73,7 @@ function LoginPage() {
                           type="password"
                           id="form2Example2"
                           className="form-control border border-dark rounded"
+                          autoComplete="current-password"
                           name="password"
                           value={loginInput.password}
                           onChange={inputHandler}

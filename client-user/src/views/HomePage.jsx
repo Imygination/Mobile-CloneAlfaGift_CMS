@@ -1,7 +1,12 @@
 // import MainNavigation from "../components/MainNavigation"
+import ItemCard from "../components/ItemCard";
+import useFetch from "../hooks/useFetch";
 import "./HomePage.css";
 
 function HomePage() {
+  let { data: items, isLoading: loadingItems } = useFetch("customer/item");
+  console.log(items, "<<<<<<<<<<<<<< items di Home");
+
   return (
     <>
       {/* <!-- Navbar --> */}
@@ -32,7 +37,7 @@ function HomePage() {
               href="https://mdbootstrap.com/"
             >
               <img
-                src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                src="https://static-content.alfagift.id/static/logo-alfagift.png"
                 height="20"
                 alt="MDB Logo"
                 loading="lazy"
@@ -134,13 +139,13 @@ function HomePage() {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg"
+              src="https://alfagift.id/_ipx/q_70/https://cdn.takdes.net/media/bo/product/ama/banner/pm_banner_231102_hPNi.png"
               className="d-block w-100"
               alt="Wild Landscape"
             />
             <div
               className="mask"
-              style={{backgroundColor: "rgba(0, 0, 0, 0.4)"}}
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
             ></div>
             <div className="carousel-caption d-none d-sm-block mb-5">
               <h1 className="mb-4">
@@ -170,13 +175,13 @@ function HomePage() {
           </div>
           <div className="carousel-item">
             <img
-              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg"
+              src="https://alfagift.id/_ipx/q_70/https://cdn.takdes.net/media/bo/product/ama/banner/pm_banner_230613_JEIg.jpg"
               className="d-block w-100"
               alt="Camera"
             />
             <div
               className="mask"
-              style={{backgroundColor: "rgba(0, 0, 0, 0.4)"}}
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
             ></div>
             <div className="carousel-caption d-none d-md-block mb-5">
               <h1 className="mb-4">
@@ -206,13 +211,13 @@ function HomePage() {
           </div>
           <div className="carousel-item">
             <img
-              src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg"
+              src="https://alfagift.id/_ipx/q_70/https://cdn.takdes.net/media/bo/product/ama/banner/pm_banner_231104_M0bN.png"
               className="d-block w-100"
               alt="Exotic Fruits"
             />
             <div
               className="mask"
-              style={{backgroundColor: "rgba(0, 0, 0, 0.4)"}}
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
             ></div>
             <div className="carousel-caption d-none d-md-block mb-5">
               <h1 className="mb-4">
@@ -273,7 +278,7 @@ function HomePage() {
           {/* <!-- Navbar --> */}
           <nav
             className="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2"
-            style={{backgroundColor: "#607D8B"}}
+            style={{ backgroundColor: "#e61717" }}
           >
             {/* <!-- Container wrapper --> */}
             <div className="container-fluid">
@@ -325,7 +330,7 @@ function HomePage() {
                 </ul>
 
                 {/* <!-- Search --> */}
-                <form className="w-auto py-1" style={{maxWidth: "12rem"}}>
+                <form className="w-auto py-1" style={{ maxWidth: "12rem" }}>
                   <input
                     type="search"
                     className="form-control rounded-0"
@@ -343,7 +348,16 @@ function HomePage() {
           <section>
             <div className="text-center">
               <div className="row">
-                <div className="col-lg-3 col-md-6 mb-4">
+                {loadingItems ? (
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                ) : (
+                  items.map((item) => {
+                    return <ItemCard item={item} key={item.id} />;
+                  })
+                )}
+                {/* <div className="col-lg-3 col-md-6 mb-4">
                   <div className="card">
                     <div
                       className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -364,7 +378,9 @@ function HomePage() {
                         <div className="hover-overlay">
                           <div
                             className="mask"
-                            style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}
+                            style={{
+                              backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            }}
                           ></div>
                         </div>
                       </a>
@@ -379,9 +395,9 @@ function HomePage() {
                       <h6 className="mb-3 price">120$</h6>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="col-lg-3 col-md-6 mb-4">
+                {/* <div className="col-lg-3 col-md-6 mb-4">
                   <div className="card">
                     <div
                       className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -404,7 +420,9 @@ function HomePage() {
                         <div className="hover-overlay">
                           <div
                             className="mask"
-                            style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}
+                            style={{
+                              backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            }}
                           ></div>
                         </div>
                       </a>
@@ -435,7 +453,9 @@ function HomePage() {
                         <div className="hover-overlay">
                           <div
                             className="mask"
-                            style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}
+                            style={{
+                              backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            }}
                           ></div>
                         </div>
                       </a>
@@ -475,7 +495,9 @@ function HomePage() {
                         <div className="hover-overlay">
                           <div
                             className="mask"
-                            style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}
+                            style={{
+                              backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            }}
                           ></div>
                         </div>
                       </a>
@@ -493,10 +515,10 @@ function HomePage() {
                       </h6>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-lg-3 col-md-6 mb-4">
                   <div className="card">
                     <div
@@ -627,7 +649,7 @@ function HomePage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
 
@@ -681,7 +703,7 @@ function HomePage() {
 
       <footer
         className="text-center text-white mt-4"
-        style={{backgroundColor: "#607D8B"}}
+        style={{ backgroundColor: "#607D8B" }}
       >
         {/* <!--Call to action--> */}
         <div className="pt-4 pb-2">
@@ -775,7 +797,10 @@ function HomePage() {
         {/* <!-- Copyright --> */}
         <div
           className="text-center p-3"
-          style={{backgroundColor:" rgba(0, 0, 0, 0.2)", textColor: "#E0E0E0"}}
+          style={{
+            backgroundColor: " rgba(0, 0, 0, 0.2)",
+            textColor: "#E0E0E0",
+          }}
         >
           © 2022 Copyright:
           <a className="text-white" href="https://mdbootstrap.com/">

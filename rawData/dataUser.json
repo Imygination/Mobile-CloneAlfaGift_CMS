@@ -13,7 +13,7 @@
     "username": "alice smith",
     "email": "alice.smith@example.com",
     "password": "securepwd",
-    "role": "Staff",
+    "role": "Admin",
     "phoneNumber": "+9876543210",
     "address": "456 Oak Avenue"
   }

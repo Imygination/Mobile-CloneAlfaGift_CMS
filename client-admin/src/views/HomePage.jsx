@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetch";
 import "./HomePage.css";
 
 function HomePage() {
-  let { data: items, isLoading: loadingItems } = useFetch("item");
+  let { data: items, isLoading: loadingItems } = useFetch("user/item");
   console.log(items, "<<<<<<<<<<<<<< items di Home");
   return (
     <>
@@ -33,7 +33,13 @@ function HomePage() {
           </thead>
           <tbody>
             {loadingItems ? (
-              <tr><td>LOADING...</td></tr>
+              <tr>
+                <td>
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </td>
+              </tr>
             ) : (
               items.map((item) => {
                 return <TableItem item={item} key={item.id} />;

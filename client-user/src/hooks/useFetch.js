@@ -10,10 +10,8 @@ export default function useFetch(path) {
   let data = [];
   data = useSelector((state) => {
     switch (path) {
-      case "user/item":
+      case "customer/item":
         return state.itemReducer.items;
-      case "user/category":
-        return state.categoryReducer.categories;
       default:
         return state.itemReducer.items;
     }

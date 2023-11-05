@@ -31,6 +31,7 @@ class ConItem {
 
   static async createItem(req, res, next) {
     const trasnCreateItem = await sequelize.transaction();
+    const trasnCreateIngredient = await sequelize.transaction();
     try {
       const {
         name,
@@ -39,7 +40,9 @@ class ConItem {
         imgUrl,
         authorId,
         categoryId,
-        ingredientName,
+        ingredientName1,
+        ingredientName2,
+        ingredientName3,
       } = req.body;
       const item = await Item.create(
         {
@@ -52,17 +55,22 @@ class ConItem {
         },
         { transaction: trasnCreateItem }
       );
-      const ingredient = await Ingredient.create(
-        {
-          name: ingredientName,
-        },
-        { transaction: trasnCreateItem }
-      );
-      console.log(ingredient);
       await trasnCreateItem.commit();
+      const ingredient = await Ingredient.bulkCreate(
+        [
+          { name: ingredientName1, itemId: item.id },
+          { name: ingredientName2, itemId: item.id },
+          { name: ingredientName3, itemId: item.id },
+        ],
+        { validate: true },
+        { transaction: trasnCreateIngredient }
+      );
+      await trasnCreateIngredient.commit();
+      console.log(ingredient);
       res.status(201).json(item);
     } catch (error) {
       await trasnCreateItem.rollback();
+      await trasnCreateIngredient.rollback();
       next(error);
     }
   }

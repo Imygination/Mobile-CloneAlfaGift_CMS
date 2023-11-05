@@ -15,6 +15,19 @@ class ConCategory {
     }
   }
 
+  static async showCategoryById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const category = await Category.findByPk(id);
+      if (!category) {
+        throw { name: "Category Not Found" };
+      }
+      res.status(200).json(category);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async createCategory(req, res, next) {
     try {
       const { name } = req.body;

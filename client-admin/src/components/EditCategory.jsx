@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { addCategory, fetchData } from "../store/actions/actionCreator";
 import Swal from "sweetalert2";
 
-function AddCategory() {
+function EditCategory(cat) {
+  console.log(cat, "<<<<<<<<<<cat");
   const dispatch = useDispatch();
   const [category, setCategory] = useState({
     name: "",
@@ -24,21 +25,21 @@ function AddCategory() {
     try {
       const response = await dispatch(addCategory(category));
       Swal.fire({
-        position: 'center',
-        icon: 'success',
+        position: "center",
+        icon: "success",
         title: `Success Add ${response.name}`,
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       dispatch(fetchData("user/category"));
       console.log(response, "<<<<<<<<<<< DARI SERVER ADD");
     } catch (error) {
       console.log(error);
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
+        icon: "error",
+        title: "Oops...",
         text: error.message[0],
-      })
+      });
     }
   };
 
@@ -46,7 +47,7 @@ function AddCategory() {
     <>
       <div
         className="modal fade"
-        id="exampleModal"
+        id="exampleModal2"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -109,4 +110,4 @@ function AddCategory() {
   );
 }
 
-export default AddCategory;
+export default EditCategory;

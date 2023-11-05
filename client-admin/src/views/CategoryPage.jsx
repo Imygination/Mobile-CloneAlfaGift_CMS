@@ -4,7 +4,8 @@ import TableCategory from "../components/TableCategory";
 import useFetch from "../hooks/useFetch";
 
 function CategoryPage() {
-  const { data: categories, isLoading: loadingCategories } = useFetch("category");
+  const { data: categories, isLoading: loadingCategories } =
+    useFetch("user/category");
   return (
     <>
       <MainNavigation />
@@ -30,11 +31,23 @@ function CategoryPage() {
             </tr>
           </thead>
           <tbody>
-          {loadingCategories ? (
-              <tr><td>LOADING...</td></tr>
+            {loadingCategories ? (
+              <tr>
+                <td>
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </td>
+              </tr>
             ) : (
               categories.map((category, index) => {
-                return <TableCategory category={category} index={index} key={category.id} />;
+                return (
+                  <TableCategory
+                    category={category}
+                    index={index}
+                    key={category.id}
+                  />
+                );
               })
             )}
           </tbody>
