@@ -1,16 +1,8 @@
-import HomePage from "./views/HomePage"
-// import RegisterPage from "./views/RegisterPage"
-// import LoginPage from "./views/LoginPage"
+import {RouterProvider} from 'react-router-dom'
+import router from './routes'
 
 function App() {
-
-  return (
-    <>
-    {/* <LoginPage /> */}
-    {/* <RegisterPage /> */}
-    <HomePage />
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App

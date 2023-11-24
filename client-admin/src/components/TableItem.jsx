@@ -1,34 +1,74 @@
-function TableItem() {
+import Swal from "sweetalert2";
+import AddItem from "./AddItem";
+import { useDispatch } from "react-redux";
+import { deleteItem, fetchData } from "../store/actions/actionCreator";
+
+/* eslint-disable react/prop-types */
+function TableItem({ item }) {
+  const dispatch = useDispatch();
+  const deleteHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await dispatch(deleteItem(item.id));
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Success Delete ${response.name}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      dispatch(fetchData("user/item"));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <tr>
         <td>
           <div className="d-flex align-items-center">
             <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              src={item.imgUrl}
               alt=""
               style={{ width: "100px", height: "100px" }}
               className="rounded"
             />
             <div className="ms-3">
-              <p className="fw-bold mb-1">John Doe</p>
-              <p className="text-muted mb-0">john.doe@gmail.com</p>
+              <p className="fw-bold mb-1">{item.name}</p>
+              <p className="text-muted mb-0">Category: {item.Category.name}</p>
             </div>
           </div>
         </td>
         <td>
-          <p className="fw-normal mb-1">Software engineer</p>
-          <p className="text-muted mb-0">IT department</p>
+          <p className="fw-normal mb-1">{item.price}</p>
         </td>
         <td>
-          <span className="badge badge-success rounded-pill d-inline">
-            Active
-          </span>
+          <p className="fw-normal mb-1">Author: {item.User.username}</p>
         </td>
-        <td>Senior</td>
         <td>
-          <button type="button" className="btn btn-link btn-sm btn-rounded">
+          <p className="fw-normal mb-1">
+            Ingredients:
+            {item.Ingredients ? item.Ingredients.map(ingredient => {
+              return ingredient.name + ', '
+            }) : "No Ingredients"}
+          </p>
+        </td>
+        <td>
+          <button
+            type="button"
+            className="btn btn-warning btn-sm btn-rounded ms-2"
+            data-mdb-toggle="modal"
+            data-mdb-target="#exampleModal"
+          >
             Edit
+          </button>
+          <AddItem />
+          <button
+            type="button"
+            className="btn btn-danger btn-sm btn-rounded ms-2"
+            onClick={deleteHandler}
+          >
+            Delete
           </button>
         </td>
       </tr>
@@ -36,5 +76,4 @@ function TableItem() {
   );
 }
 
-
-export default TableItem
+export default TableItem;

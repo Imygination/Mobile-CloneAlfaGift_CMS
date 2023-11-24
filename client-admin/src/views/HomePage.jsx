@@ -1,9 +1,12 @@
 import AddItem from "../components/AddItem";
 import MainNavigation from "../components/MainNavigation";
 import TableItem from "../components/TableItem";
+import useFetch from "../hooks/useFetch";
 import "./HomePage.css";
 
 function HomePage() {
+  let { data: items, isLoading: loadingItems } = useFetch("user/item");
+  console.log(items, "<<<<<<<<<<<<<< items di Home");
   return (
     <>
       <MainNavigation />
@@ -25,11 +28,23 @@ function HomePage() {
               <th>Price</th>
               <th>Author</th>
               <th>Ingredients</th>
-              <th>Actions</th>
+              <th className="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <TableItem />
+            {loadingItems ? (
+              <tr>
+                <td>
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              items.map((item) => {
+                return <TableItem item={item} key={item.id} />;
+              })
+            )}
           </tbody>
         </table>
       </main>
